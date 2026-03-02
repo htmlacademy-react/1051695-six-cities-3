@@ -1,13 +1,10 @@
 import MainPage from '../pages/main/main-page';
-
-type MainPageProps = {
-  rentOffersCount: number;
-}
+import { Settings } from '../consts';
 
 
-function App({rentOffersCount}:MainPageProps): JSX.Element {
+function App(): JSX.Element {
   return (
-    <MainPage rentOffersCount={rentOffersCount}/>
+    <MainPage rentOffersCount={Settings.rentOffersCount} isSignedIn = {Settings.isSignedIn}/>
   );
 }
 
