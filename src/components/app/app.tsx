@@ -1,4 +1,4 @@
-import MainPage from '../../pages/main/main-page';
+import MainPage from '../../pages/main-page/main-page';
 import { Settings } from '../../consts';
 
 
