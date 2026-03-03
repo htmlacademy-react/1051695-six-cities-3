@@ -3,7 +3,8 @@ const Settings = {
   isSignedIn: true,
 };
 
-const locations: string[] = [
+const LOCATIONS = [
   'Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'
 ];
-export { Settings, locations };
+
+export { Settings, LOCATIONS };
