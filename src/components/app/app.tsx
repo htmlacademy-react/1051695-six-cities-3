@@ -6,6 +6,8 @@ import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import { Settings, AppRoute } from '../../consts';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import PrivateRoute from '../private-route/private-route';
+import { offers } from '../../mocks/offers-mock';
+import { currentOffer } from '../../mocks/current-offer-mock';
 
 
 function App(): JSX.Element {
@@ -14,7 +16,7 @@ function App(): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainPage rentOffersCount={Settings.rentOffersCount} isSignedIn={Settings.isSignedIn} />}
+          element={<MainPage rentOffersCount={Settings.rentOffersCount} isSignedIn={Settings.isSignedIn} offers= {offers}/>}
         />
         <Route
           path={AppRoute.Favorite}
@@ -30,7 +32,7 @@ function App(): JSX.Element {
         />
         <Route
           path={AppRoute.Offer}
-          element={<OfferPage isSignedIn={Settings.isSignedIn} />}
+          element={<OfferPage isSignedIn={Settings.isSignedIn} offers={offers} currentOffer ={currentOffer}/>}
         />
         <Route
           path='*'

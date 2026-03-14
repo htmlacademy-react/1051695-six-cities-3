@@ -3,7 +3,7 @@ const Settings = {
   isSignedIn: true,
 };
 
-const locations = [
+const CITIES = [
   'Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'
 ];
 
@@ -14,4 +14,4 @@ const AppRoute = {
   Offer: '/offer/:id',
 } ;
 
-export { Settings, locations, AppRoute };
+export { Settings, CITIES, AppRoute };

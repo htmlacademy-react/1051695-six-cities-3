@@ -1,25 +1,24 @@
-import CitiesCard from '../../components/cities-card/cities-card';
 import Header from '../../components/header/header';
 import LocationsList from '../../components/locations-list/locations-list';
 import Map from '../../components/map/map';
-import {nanoid} from 'nanoid';
-import { locations } from '../../consts';
+import { CITIES } from '../../consts';
+import { mainOfferType } from './main-offer-type';
+import OffersList from '../../components/offers-list/offers-list';
 
 type mainPageProps = {
   rentOffersCount: number;
   isSignedIn: boolean;
+  offers: mainOfferType[];
 }
 
-function MainPage({ rentOffersCount, isSignedIn }: mainPageProps): JSX.Element {
-  const cards = new Array(rentOffersCount).fill(null);
-
+function MainPage({ rentOffersCount, isSignedIn, offers }: mainPageProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Header isSignedIn={isSignedIn} />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          {LocationsList(locations)}
+          {LocationsList(CITIES)}
         </div>
         <div className="cities">
           <div className="cities__places-container container">
@@ -53,11 +52,11 @@ function MainPage({ rentOffersCount, isSignedIn }: mainPageProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {cards.map(() => <CitiesCard key = {nanoid()}/>)}
+                <OffersList offers={offers}/>
               </div>
             </section>
             <div className="cities__right-section">
-              <Map />
+              <Map className="cities__map map" />
             </div>
           </div>
         </div>
