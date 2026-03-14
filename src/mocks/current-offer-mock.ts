@@ -5,7 +5,7 @@ export const currentOffer: currentOfferType =
 {
   'id': '6af6f711',
   'title': 'Beautiful urus studio at great location',
-  'type': 'apartment',
+  'type': 'house',
   'price': 120,
   'city': {
     'name': CITIES[0],
@@ -20,18 +20,21 @@ export const currentOffer: currentOfferType =
     'longitude': 14.673877537499948,
     'zoom': 8
   },
-  'isFavorite': false,
+  'isFavorite': true,
   'isPremium': false,
-  'rating': 5,
-  'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
-  'bedrooms': 3,
+  'rating': 4.3,
+  'description': 'So cozy and picturesque that hides behind a a river by the unique light. A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
+  'bedrooms': 11,
   'goods': [
-    'Heating'
+    'Heating',
+    'Washing machine',
+    'Wi-Fi',
+    'Cabel TV',
   ],
   'host': {
     'name': 'Oliver Conner',
     'avatarUrl': `https://picsum.photos/400?random${Math.random()}`,
-    'isPro': false
+    'isPro': true
   },
   'images': [
     `https://picsum.photos/400?random${Math.random()}`,
@@ -42,7 +45,7 @@ export const currentOffer: currentOfferType =
     `https://picsum.photos/400?random${Math.random()}`,
     `https://picsum.photos/400?random${Math.random()}`,
   ],
-  'maxAdults': 4
+  'maxAdults': 12
 };
 // {
 //     'id': '6af6f711-c28d-4121-82cd-e0b462a27f00',

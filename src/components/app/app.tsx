@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import PrivateRoute from '../private-route/private-route';
 import { offers } from '../../mocks/offers-mock';
 import { currentOffer } from '../../mocks/current-offer-mock';
+import { comments } from '../../mocks/comments-mock';
 
 
 function App(): JSX.Element {
@@ -32,7 +33,7 @@ function App(): JSX.Element {
         />
         <Route
           path={AppRoute.Offer}
-          element={<OfferPage isSignedIn={Settings.isSignedIn} offers={offers} currentOffer ={currentOffer}/>}
+          element={<OfferPage isSignedIn={Settings.isSignedIn} offers={offers} currentOffer ={currentOffer} comments={comments}/>}
         />
         <Route
           path='*'

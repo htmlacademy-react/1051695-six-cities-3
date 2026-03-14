@@ -23,7 +23,7 @@ export type currentOfferType = {
     'location': locationType;
     'isFavorite': boolean;
     'isPremium': boolean;
-    'rating': 0|1|2|3|4|5;
+    'rating': number;
     'description': string;
     'bedrooms': number;
     'goods':string[];
