@@ -15,14 +15,14 @@ function OffersList({ offers }: offersListProps): JSX.Element {
   };
 
   useEffect(()=>{
-    console.log('component did update');
-  },[offers]);
-  useEffect(()=>{
-    console.warn(onHoverCard);
+  //   console.log('component did update');
+  // },[offers]);
+  // useEffect(()=>{
+  //   console.warn(onHoverCard);
 
-    return ()=>{
-      console.log('compt will unmount');
-    };
+  //   return ()=>{
+  //     console.log('compt will unmount');
+  //   };
   },[]);
 
   return (

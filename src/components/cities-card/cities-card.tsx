@@ -1,5 +1,5 @@
 import { mainOfferType } from '../../pages/main-page/main-offer-type';
-import { AppRoute } from '../../consts';
+// import { AppRoute } from '../../consts';
 import { Link } from 'react-router-dom';
 
 type citiesCardProps = {

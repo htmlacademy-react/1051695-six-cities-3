@@ -1,4 +1,4 @@
-import { CITIES } from '../consts';
+import { cities } from '../consts';
 import { mainOfferType } from '../pages/main-page/main-offer-type';
 
 export const offers: mainOfferType[] = [
@@ -8,7 +8,7 @@ export const offers: mainOfferType[] = [
     'type': 'apartment',
     'price': 120,
     'city': {
-      'name': CITIES[0],
+      'name': cities[0],
       'location': {
         'latitude': 62.35514938496378,
         'longitude': 44.673877537499948,
@@ -31,7 +31,7 @@ export const offers: mainOfferType[] = [
     'type': 'hotel',
     'price': 820,
     'city': {
-      'name': CITIES[1],
+      'name': cities[1],
       'location': {
         'latitude': 42.35514938496378,
         'longitude': 44.673877537499948,
@@ -54,7 +54,7 @@ export const offers: mainOfferType[] = [
     'type': 'apartment',
     'price': 3420,
     'city': {
-      'name': CITIES[1],
+      'name': cities[1],
       'location': {
         'latitude': 72.35514938496378,
         'longitude': 34.673877537499948,
@@ -77,7 +77,7 @@ export const offers: mainOfferType[] = [
     'type': 'house',
     'price': 140,
     'city': {
-      'name': CITIES[3],
+      'name': cities[3],
       'location': {
         'latitude': 42.35514938496378,
         'longitude': 14.673877537499948,

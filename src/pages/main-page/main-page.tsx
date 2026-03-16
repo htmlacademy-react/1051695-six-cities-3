@@ -1,7 +1,7 @@
 import Header from '../../components/header/header';
 import LocationsList from '../../components/locations-list/locations-list';
 import Map from '../../components/map/map';
-import { CITIES } from '../../consts';
+import { cities } from '../../consts';
 import { mainOfferType } from './main-offer-type';
 import OffersList from '../../components/offers-list/offers-list';
 
@@ -18,7 +18,7 @@ function MainPage({ rentOffersCount, isSignedIn, offers }: mainPageProps): JSX.E
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          {LocationsList(CITIES)}
+          {LocationsList(cities)}
         </div>
         <div className="cities">
           <div className="cities__places-container container">

@@ -1,6 +1,7 @@
 import Header from '../../components/header/header';
 import OffersList from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
+import Form from '../../components/form/form';
 import { mainOfferType } from '../main-page/main-offer-type';
 import { currentOfferType } from './current-offer-type';
 import { commentsType } from './comments-type';
@@ -40,7 +41,7 @@ function OfferPage({ isSignedIn, offers, currentOffer, comments }: offerPageProp
             <div className="offer__gallery">
               {images.map((img, i) => (
                 i < 6 &&
-                <div key={null} className="offer__image-wrapper">
+                <div key={img} className="offer__image-wrapper">
                   <img
                     className="offer__image"
                     src={img}
@@ -90,7 +91,7 @@ function OfferPage({ isSignedIn, offers, currentOffer, comments }: offerPageProp
               <div className="offer__inside">
                 <h2 className="offer__inside-title">What&apos;s inside</h2>
                 <ul className="offer__inside-list">
-                  {goods.map((el) => <li key={null} className="offer__inside-item">{el}</li>)}
+                  {goods.map((el) => <li key={el} className="offer__inside-item">{el}</li>)}
                 </ul>
               </div>
               <div className="offer__host">
@@ -120,7 +121,7 @@ function OfferPage({ isSignedIn, offers, currentOffer, comments }: offerPageProp
                 </h2>
                 <ul className="reviews__list">
                   {comments.map((comment) => (
-                    <li key='null' className="reviews__item">
+                    <li key={comment.id} className="reviews__item">
                       <div className="reviews__user user">
                         <div className="reviews__avatar-wrapper user__avatar-wrapper">
                           <img
@@ -150,115 +151,7 @@ function OfferPage({ isSignedIn, offers, currentOffer, comments }: offerPageProp
                       </div>
                     </li>))}
                 </ul>
-                <form className="reviews__form form" action="#" method="post">
-                  <label className="reviews__label form__label" htmlFor="review">
-                    Your review
-                  </label>
-                  <div className="reviews__rating-form form__rating">
-                    <input
-                      className="form__rating-input visually-hidden"
-                      name="rating"
-                      defaultValue={5}
-                      id="5-stars"
-                      type="radio"
-                    />
-                    <label
-                      htmlFor="5-stars"
-                      className="reviews__rating-label form__rating-label"
-                      title="perfect"
-                    >
-                      <svg className="form__star-image" width={37} height={33}>
-                        <use xlinkHref="#icon-star" />
-                      </svg>
-                    </label>
-                    <input
-                      className="form__rating-input visually-hidden"
-                      name="rating"
-                      defaultValue={4}
-                      id="4-stars"
-                      type="radio"
-                    />
-                    <label
-                      htmlFor="4-stars"
-                      className="reviews__rating-label form__rating-label"
-                      title="good"
-                    >
-                      <svg className="form__star-image" width={37} height={33}>
-                        <use xlinkHref="#icon-star" />
-                      </svg>
-                    </label>
-                    <input
-                      className="form__rating-input visually-hidden"
-                      name="rating"
-                      defaultValue={3}
-                      id="3-stars"
-                      type="radio"
-                    />
-                    <label
-                      htmlFor="3-stars"
-                      className="reviews__rating-label form__rating-label"
-                      title="not bad"
-                    >
-                      <svg className="form__star-image" width={37} height={33}>
-                        <use xlinkHref="#icon-star" />
-                      </svg>
-                    </label>
-                    <input
-                      className="form__rating-input visually-hidden"
-                      name="rating"
-                      defaultValue={2}
-                      id="2-stars"
-                      type="radio"
-                    />
-                    <label
-                      htmlFor="2-stars"
-                      className="reviews__rating-label form__rating-label"
-                      title="badly"
-                    >
-                      <svg className="form__star-image" width={37} height={33}>
-                        <use xlinkHref="#icon-star" />
-                      </svg>
-                    </label>
-                    <input
-                      className="form__rating-input visually-hidden"
-                      name="rating"
-                      defaultValue={1}
-                      id="1-star"
-                      type="radio"
-                    />
-                    <label
-                      htmlFor="1-star"
-                      className="reviews__rating-label form__rating-label"
-                      title="terribly"
-                    >
-                      <svg className="form__star-image" width={37} height={33}>
-                        <use xlinkHref="#icon-star" />
-                      </svg>
-                    </label>
-                  </div>
-                  <textarea
-                    className="reviews__textarea form__textarea"
-                    id="review"
-                    name="review"
-                    placeholder="Tell how was your stay, what you like and what can be improved"
-                    defaultValue={''}
-                  />
-                  <div className="reviews__button-wrapper">
-                    <p className="reviews__help">
-                      To submit review please make sure to set{' '}
-                      <span className="reviews__star">rating</span> and describe
-                      your stay with at least{' '}
-                      <b className="reviews__text-amount">50 characters</b>.
-                    </p>
-                    <button
-                      className="reviews__submit form__submit button"
-                      type="submit"
-                      disabled
-                    >
-                      Submit
-                    </button>
-                  </div>
-                </form>
+                {isSignedIn && <Form />}
               </section>
             </div>
           </div>

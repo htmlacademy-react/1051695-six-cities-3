@@ -1,4 +1,4 @@
-import { CITIES } from '../consts';
+import { cities } from '../consts';
 import { currentOfferType } from '../pages/offer-page/current-offer-type';
 
 export const currentOffer: currentOfferType =
@@ -8,7 +8,7 @@ export const currentOffer: currentOfferType =
   'type': 'house',
   'price': 120,
   'city': {
-    'name': CITIES[0],
+    'name': cities[0],
     'location': {
       'latitude': 62.35514938496378,
       'longitude': 44.673877537499948,
@@ -53,7 +53,7 @@ export const currentOffer: currentOfferType =
 //     'type': 'hotel',
 //     'price': 820,
 //     'city': {
-//       'name': CITIES[4],
+//       'name': cities[4],
 //       'location': {
 //         'latitude': 42.35514938496378,
 //         'longitude': 44.673877537499948,
@@ -92,7 +92,7 @@ export const currentOffer: currentOfferType =
 //   'type': 'apartment',
 //   'price': 3420,
 //   'city': {
-//     'name': CITIES[1],
+//     'name': cities[1],
 //     'location': {
 //       'latitude': 72.35514938496378,
 //       'longitude': 34.673877537499948,
@@ -132,7 +132,7 @@ export const currentOffer: currentOfferType =
 //   'type': 'house',
 //   'price': 140,
 //   'city': {
-//     'name': CITIES[3],
+//     'name': cities[3],
 //     'location': {
 //       'latitude': 42.35514938496378,
 //       'longitude': 14.673877537499948,
