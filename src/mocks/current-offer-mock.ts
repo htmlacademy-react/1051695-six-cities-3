@@ -21,7 +21,7 @@ export const currentOffer: currentOfferType =
     'zoom': 8
   },
   'isFavorite': true,
-  'isPremium': false,
+  'isPremium': true,
   'rating': 4.3,
   'description': 'So cozy and picturesque that hides behind a a river by the unique light. A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
   'bedrooms': 11,
