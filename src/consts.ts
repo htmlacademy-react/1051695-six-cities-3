@@ -22,4 +22,6 @@ const ratings = [
   { value: 1, label: 'terribly' },
 ];
 
-export { Settings, cities, AppRoute, ratings };
+const NEAR_PLACES_MAX_LENGTH = 3;
+
+export { Settings, cities, AppRoute, ratings, NEAR_PLACES_MAX_LENGTH };

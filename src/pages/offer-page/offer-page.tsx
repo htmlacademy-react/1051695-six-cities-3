@@ -61,9 +61,9 @@ function OfferPage({ isSignedIn, offers, currentOffer, comments }: offerPageProp
                 <h1 className="offer__name">
                   {title}
                 </h1>
-                <button className="offer__bookmark-button button" type="button">
+                <button className={`offer__bookmark-button button ${isFavorite && 'offer__bookmark-button--active'}`} type="button">
                   <svg className="offer__bookmark-icon" width={31} height={33}>
-                    {isFavorite ? <use xlinkHref="#icon-bookmark" fill='#4481c3' stroke='#4481c3' /> : <use xlinkHref="#icon-bookmark" />}
+                    <use xlinkHref="#icon-bookmark"/>
                   </svg>
                   <span className="visually-hidden">To bookmarks</span>
                 </button>
@@ -163,7 +163,7 @@ function OfferPage({ isSignedIn, offers, currentOffer, comments }: offerPageProp
               Other places in the neighbourhood
             </h2>
             <div className="near-places__list places__list">
-              <OffersList offers={offers} />
+              <OffersList offers={offers} isOfferPage/>
             </div>
           </section>
         </div>

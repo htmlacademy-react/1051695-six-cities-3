@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 type citiesCardProps = {
   offer: mainOfferType;
-  handleHover?: (offer?: mainOfferType) => void;
+  handleHover?: (offer?: string) => void;
   page?: string;
   imgWidth?: number;
   imgHeight?: number;
@@ -15,7 +15,7 @@ function CitiesCard({ offer, handleHover = () => {}, page = 'cities', imgWidth =
   const { price, title, type, isPremium, isFavorite, previewImage, rating } = offer;
 
   const handleMouseOn = () => {
-    handleHover(offer);
+    handleHover(offer.id);
   };
   const handleMouseOff = () => {
     handleHover();
