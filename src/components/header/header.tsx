@@ -28,7 +28,7 @@ function Header({ isSignedIn, isLoginPage = false }: headerProps): JSX.Element {
                 <li className="header__nav-item user">
                   {isSignedIn &&
                     <Link
-                      to={AppRoute.Login}
+                      to={AppRoute.Favorite}
                       className="header__nav-link header__nav-link--profile"
                     >
                       <div className="header__avatar-wrapper user__avatar-wrapper"></div>
