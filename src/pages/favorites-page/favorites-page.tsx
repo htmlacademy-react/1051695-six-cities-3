@@ -2,6 +2,7 @@ import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import { mainOfferType } from '../main-page/main-offer-type';
 import CitiesCard from '../../components/cities-card/cities-card';
+import { CitiesCardClass } from '../../consts';
 
 type favoritePageProps = {
   isSignedIn: boolean;
@@ -29,7 +30,7 @@ function FavoritesPage({ isSignedIn, offers }: favoritePageProps): JSX.Element {
                   </div>
                   <div className="favorites__places">
                     {offers.map((offer) => (offer.city.name === city && offer.isFavorite ?
-                      <CitiesCard key={offer.id} offer={offer} page='favorites' imgWidth={150} imgHeight={110} infoClass='favorites__card-info' />
+                      <CitiesCard key={offer.id} offer={offer} page={CitiesCardClass.FAVORITES} imgWidth={150} imgHeight={110} infoClass='favorites__card-info' />
                       : null))}
                   </div>
                 </li>))}

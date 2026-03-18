@@ -24,4 +24,10 @@ const ratings = [
 
 const NEAR_PLACES_MAX_LENGTH = 3;
 
-export { Settings, cities, AppRoute, ratings, NEAR_PLACES_MAX_LENGTH };
+const CitiesCardClass = {
+  CITIES:'cities',
+  NEAR_PLACES:'near-places',
+  FAVORITES: 'favorites'
+};
+
+export { Settings, cities, AppRoute, ratings, NEAR_PLACES_MAX_LENGTH,CitiesCardClass };

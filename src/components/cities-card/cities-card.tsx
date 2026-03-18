@@ -1,17 +1,18 @@
 import { mainOfferType } from '../../pages/main-page/main-offer-type';
 import { AppRoute } from '../../consts';
 import { Link } from 'react-router-dom';
+import { CitiesCardClass } from '../../consts';
 
 type citiesCardProps = {
   offer: mainOfferType;
   handleHover?: (offer?: string) => void;
-  page?: string;
+  page: string;
   imgWidth?: number;
   imgHeight?: number;
   infoClass?: string;
 }
 
-function CitiesCard({ offer, handleHover = () => {}, page = 'cities', imgWidth = 260, imgHeight = 200, infoClass = '' }: citiesCardProps): JSX.Element {
+function CitiesCard({ offer, handleHover = () => {}, page = CitiesCardClass.CITIES, imgWidth = 260, imgHeight = 200, infoClass = '' }: citiesCardProps): JSX.Element {
   const { price, title, type, isPremium, isFavorite, previewImage, rating } = offer;
 
   const handleMouseOn = () => {
