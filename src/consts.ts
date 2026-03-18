@@ -1,5 +1,5 @@
 const Settings = {
-  rentOffersCount: 5,
+  rentOffersCount: 4,
   isSignedIn: true,
 };
 

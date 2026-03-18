@@ -9,7 +9,7 @@ type favoritePageProps = {
 }
 
 function FavoritesPage({ isSignedIn, offers }: favoritePageProps): JSX.Element {
-  const uniqueCities = Array.from(new Set(offers.map((offer) => offer.city.name)));
+  const uniqueCities = (Array.from(new Set(offers.map((offer) => offer.isFavorite && offer.city.name)))).filter(Boolean);
   return (
     <div className="page">
       <Header isSignedIn={isSignedIn} />
@@ -19,7 +19,7 @@ function FavoritesPage({ isSignedIn, offers }: favoritePageProps): JSX.Element {
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
               {uniqueCities.map((city) => (
-                <li key={city} className="favorites__locations-items">
+                <li key={city || null} className="favorites__locations-items">
                   <div className="favorites__locations locations locations--current">
                     <div className="locations__item">
                       <a className="locations__item-link" href="#">
@@ -28,8 +28,8 @@ function FavoritesPage({ isSignedIn, offers }: favoritePageProps): JSX.Element {
                     </div>
                   </div>
                   <div className="favorites__places">
-                    {offers.map((offer) => (offer.city.name === city ?
-                      <CitiesCard key={offer.id} offer={offer} page='favorites' imgWidth={150} imgHeight={110} infoClass='favorites__card-info'/>
+                    {offers.map((offer) => (offer.city.name === city && offer.isFavorite ?
+                      <CitiesCard key={offer.id} offer={offer} page='favorites' imgWidth={150} imgHeight={110} infoClass='favorites__card-info' />
                       : null))}
                   </div>
                 </li>))}

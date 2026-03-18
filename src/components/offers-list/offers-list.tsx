@@ -1,35 +1,22 @@
 import { mainOfferType } from '../../pages/main-page/main-offer-type';
-import { useState, useEffect } from 'react';
 import CitiesCard from '../cities-card/cities-card';
-import { Nullable } from 'vitest';
 import { NEAR_PLACES_MAX_LENGTH } from '../../consts';
 
 type offersListProps = {
   offers: mainOfferType[];
   isOfferPage?: boolean;
+  handleHover?: (offer?: string) => void;
 }
 
 
-function OffersList({ offers, isOfferPage = false }: offersListProps): JSX.Element {
-  const [onHoverCard, setOnHoverCard] = useState<Nullable<string>>(null);
-  const handleHover = (offer?: string) => {
-    setOnHoverCard(offer || null);
-  };
-
+function OffersList({ offers, isOfferPage = false,handleHover }: offersListProps): JSX.Element {
   if (isOfferPage) {
-    offers.splice(NEAR_PLACES_MAX_LENGTH);
+    return (
+      <>
+        {offers.slice(0, NEAR_PLACES_MAX_LENGTH).map((offer) => <CitiesCard handleHover={handleHover} key={offer.id} offer={offer} page="cities" />)}
+      </>
+    );
   }
-
-  useEffect(() => {
-    //   console.log('component did update');
-    // },[offers]);
-    // useEffect(()=>{
-    //   console.warn(onHoverCard);
-
-    //   return ()=>{
-    //     console.log('compt will unmount');
-    //   };
-  }, []);
 
   return (
     <>

@@ -6,8 +6,12 @@ type changeHandlerType = ReactEventHandler<HTMLInputElement | HTMLTextAreaElemen
 function Form(): JSX.Element {
 
   const [review, setReview] = useState({ review: '', rating: 0 });
-  const handleChange: changeHandlerType = (evt) => {
-    setReview({ ...review, [evt.currentTarget.name]: evt.currentTarget.value });
+
+  const handleTextAreaChange: changeHandlerType = (evt) => {
+    setReview({ ...review, review:evt.currentTarget.value});
+  };
+  const handleInputChange: changeHandlerType = (evt) => {
+    setReview({ ...review, rating:Number (evt.currentTarget.value)});
   };
 
   return (
@@ -25,7 +29,7 @@ function Form(): JSX.Element {
               defaultValue={el.value}
               id={`${el.value}-stars`}
               type="radio"
-              onChange={handleChange}
+              onChange={handleInputChange}
             />
             <label
               htmlFor={`${el.value}-stars`}
@@ -45,7 +49,7 @@ function Form(): JSX.Element {
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
         defaultValue={''}
-        onChange={handleChange}
+        onChange={handleTextAreaChange}
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">

@@ -5,16 +5,18 @@ import Form from '../../components/form/form';
 import { mainOfferType } from '../main-page/main-offer-type';
 import { currentOfferType } from './current-offer-type';
 import { commentsType } from './comments-type';
+import { useParams } from 'react-router-dom';
 import dayjs from 'dayjs';
 
 type offerPageProps = {
   isSignedIn: boolean;
   offers: mainOfferType[];
-  currentOffer: currentOfferType;
+  currentOffers: currentOfferType[];
   comments: commentsType;
 }
 
-function OfferPage({ isSignedIn, offers, currentOffer, comments }: offerPageProps): JSX.Element {
+function OfferPage({ isSignedIn, offers, currentOffers, comments }: offerPageProps): JSX.Element {
+  const { id: offerId = '' } = useParams();
   const {
     // id,
     bedrooms,
@@ -31,7 +33,7 @@ function OfferPage({ isSignedIn, offers, currentOffer, comments }: offerPageProp
     rating,
     title,
     type
-  } = currentOffer;
+  } = currentOffers.find((el) => (el.id === offerId)) || currentOffers[0];
   return (
     <div className="page">
       <Header isSignedIn={isSignedIn} />

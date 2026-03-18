@@ -20,9 +20,9 @@ export const offers: mainOfferType[] = [
       'longitude': 14.673877537499948,
       'zoom': 8
     },
-    'isFavorite': false,
+    'isFavorite': true,
     'isPremium': true,
-    'rating': 5,
+    'rating': 3.5,
     'previewImage': `https://picsum.photos/400/300?random${Math.random()}`
   },
   {
@@ -31,7 +31,7 @@ export const offers: mainOfferType[] = [
     'type': 'hotel',
     'price': 820,
     'city': {
-      'name': cities[1],
+      'name': cities[3],
       'location': {
         'latitude': 42.35514938496378,
         'longitude': 44.673877537499948,
@@ -45,16 +45,16 @@ export const offers: mainOfferType[] = [
     },
     'isFavorite': true,
     'isPremium': false,
-    'rating': 2,
+    'rating': 2.3,
     'previewImage': `https://picsum.photos/400/300?random${Math.random()}`
   },
   {
-    'id': '6af6f711-c28d-4121-82-e0b462a27f00',
+    'id': '6af6f711-333-e0b462a27f00',
     'title': 'Beautiful & luxurious studio at great location',
     'type': 'apartment',
     'price': 3420,
     'city': {
-      'name': cities[1],
+      'name': cities[5],
       'location': {
         'latitude': 72.35514938496378,
         'longitude': 34.673877537499948,
@@ -72,7 +72,7 @@ export const offers: mainOfferType[] = [
     'previewImage': `https://picsum.photos/400/300?random${Math.random()}`
   },
   {
-    'id': '6af6f711-c2-4121-82cd-e0b462a27f00',
+    'id': '6a-c2-4121-82cd-e0b462a27f00',
     'title': '& luxurious studio at great location',
     'type': 'house',
     'price': 140,
@@ -91,7 +91,7 @@ export const offers: mainOfferType[] = [
     },
     'isFavorite': true,
     'isPremium': true,
-    'rating': 1,
+    'rating': 2.3,
     'previewImage': `https://picsum.photos/400/300?random${Math.random()}`
   },
 ];

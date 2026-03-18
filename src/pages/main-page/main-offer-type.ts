@@ -19,6 +19,6 @@ export type mainOfferType = {
     'location': locationType;
     'isFavorite': boolean;
     'isPremium': boolean;
-    'rating': 0|1|2|3|4|5;
+    'rating': number;
     'previewImage': string;
   }

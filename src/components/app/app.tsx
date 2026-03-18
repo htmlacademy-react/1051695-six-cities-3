@@ -7,7 +7,7 @@ import { Settings, AppRoute } from '../../consts';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import PrivateRoute from '../private-route/private-route';
 import { offers } from '../../mocks/offers-mock';
-import { currentOffer } from '../../mocks/current-offer-mock';
+import { currentOffers } from '../../mocks/current-offer-mock';
 import { comments } from '../../mocks/comments-mock';
 
 
@@ -33,7 +33,7 @@ function App(): JSX.Element {
         />
         <Route
           path={`${AppRoute.Offer}/:id`}
-          element={<OfferPage isSignedIn={Settings.isSignedIn} offers={offers} currentOffer ={currentOffer} comments={comments}/>}
+          element={<OfferPage isSignedIn={Settings.isSignedIn} offers={offers} currentOffers ={currentOffers} comments={comments}/>}
         />
         <Route
           path='*'
