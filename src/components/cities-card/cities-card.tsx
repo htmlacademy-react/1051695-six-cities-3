@@ -6,7 +6,7 @@ import { CitiesCardClass } from '../../consts';
 type citiesCardProps = {
   offer: mainOfferType;
   handleHover?: (offer?: string) => void;
-  page: string;
+  page?: string;
   imgWidth?: number;
   imgHeight?: number;
   infoClass?: string;
