@@ -40,8 +40,6 @@ function App(): JSX.Element {
           element={<NotFoundPage />}
         />
       </Routes>
-      {/* <NotFoundPage />
-      <MainPage rentOffersCount={Settings.rentOffersCount} isSignedIn={Settings.isSignedIn} /> */}
     </BrowserRouter>
   );
 }
