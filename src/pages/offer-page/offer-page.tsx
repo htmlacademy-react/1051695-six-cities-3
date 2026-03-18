@@ -165,7 +165,7 @@ function OfferPage({ isSignedIn, offers, currentOffers, comments }: offerPagePro
               Other places in the neighbourhood
             </h2>
             <div className="near-places__list places__list">
-              <OffersList offers={offers} isOfferPage />
+              <OffersList offers={offers} isOfferPage page='near-places'/>
             </div>
           </section>
         </div>
