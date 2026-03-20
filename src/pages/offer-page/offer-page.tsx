@@ -43,7 +43,7 @@ function OfferPage({ isSignedIn, offers, currentOffers, comments }: offerPagePro
             <div className="offer__gallery">
               {images.map((img, i) => (
                 i < 6 &&
-                <div key={img} className="offer__image-wrapper">
+                <div key={img + Math.random()} className="offer__image-wrapper">
                   <img
                     className="offer__image"
                     src={img}
@@ -165,7 +165,7 @@ function OfferPage({ isSignedIn, offers, currentOffers, comments }: offerPagePro
               Other places in the neighbourhood
             </h2>
             <div className="near-places__list places__list">
-              <OffersList offers={offers} isOfferPage/>
+              <OffersList offers={offers} isOfferPage />
             </div>
           </section>
         </div>
