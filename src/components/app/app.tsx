@@ -3,6 +3,7 @@ import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
+import ScrollToTop from '../scroll-to-top/scroll-to-top';
 import { Settings, AppRoute } from '../../consts';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import PrivateRoute from '../private-route/private-route';
@@ -14,16 +15,17 @@ import { comments } from '../../mocks/comments-mock';
 function App(): JSX.Element {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainPage rentOffersCount={Settings.rentOffersCount} isSignedIn={Settings.isSignedIn} offers= {offers}/>}
+          element={<MainPage rentOffersCount={Settings.rentOffersCount} isSignedIn={Settings.isSignedIn} offers={offers} />}
         />
         <Route
           path={AppRoute.Favorite}
           element={
-            <PrivateRoute authorizationStatus = {Settings.isSignedIn}>
-              <FavoritesPage isSignedIn = {Settings.isSignedIn} offers= {offers}/>
+            <PrivateRoute authorizationStatus={Settings.isSignedIn}>
+              <FavoritesPage isSignedIn={Settings.isSignedIn} offers={offers} />
             </PrivateRoute>
           }
         />
@@ -33,7 +35,7 @@ function App(): JSX.Element {
         />
         <Route
           path={`${AppRoute.Offer}/:id`}
-          element={<OfferPage isSignedIn={Settings.isSignedIn} offers={offers} currentOffers ={currentOffers} comments={comments}/>}
+          element={<OfferPage isSignedIn={Settings.isSignedIn} offers={offers} currentOffers={currentOffers} comments={comments} />}
         />
         <Route
           path='*'

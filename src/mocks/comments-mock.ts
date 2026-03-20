@@ -5,7 +5,7 @@ export const comments = [
     'date': '2019-04-08T14:13:56.569Z',
     'user': {
       'name': 'Oliver',
-      'avatarUrl': `https://picsum.photos/400?random${Math.random()}`,
+      'avatarUrl': '../../img/avatar-angelina.jpg',
       'isPro': false
     },
     'comment': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
@@ -16,7 +16,7 @@ export const comments = [
     'date': '2007-02-08T14:13:56.569Z',
     'user': {
       'name': 'Conner',
-      'avatarUrl': `https://picsum.photos/400?random${Math.random()}`,
+      'avatarUrl':'../../img/avatar-angelina.jpg',
       'isPro': true
     },
     'comment': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam hides behind a a river by the unique lightness that hides behind a a river by the unique lightness.',

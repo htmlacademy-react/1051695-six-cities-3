@@ -23,7 +23,7 @@ export const offers: mainOfferType[] = [
     'isFavorite': true,
     'isPremium': true,
     'rating': 3.5,
-    'previewImage': `https://picsum.photos/400/300?random${Math.random()}`
+    'previewImage': '../../img/amsterdam.jpg'
   },
   {
     'id': '6af6f711-c28d-4121-82cd-e0b462a27f00',
@@ -46,7 +46,7 @@ export const offers: mainOfferType[] = [
     'isFavorite': true,
     'isPremium': false,
     'rating': 2.3,
-    'previewImage': `https://picsum.photos/400/300?random${Math.random()}`
+    'previewImage': '../../img/amsterdam.jpg'
   },
   {
     'id': '6af6f711-333-e0b462a27f00',
@@ -69,7 +69,7 @@ export const offers: mainOfferType[] = [
     'isFavorite': false,
     'isPremium': false,
     'rating': 4,
-    'previewImage': `https://picsum.photos/400/300?random${Math.random()}`
+    'previewImage': '../../img/amsterdam.jpg'
   },
   {
     'id': '6a-c2-4121-82cd-e0b462a27f00',
@@ -92,7 +92,7 @@ export const offers: mainOfferType[] = [
     'isFavorite': true,
     'isPremium': true,
     'rating': 2.3,
-    'previewImage': `https://picsum.photos/400/300?random${Math.random()}`
+    'previewImage': '../../img/amsterdam.jpg'
   },
 ];
 

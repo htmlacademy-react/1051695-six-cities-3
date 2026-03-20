@@ -34,17 +34,17 @@ export const currentOffers: currentOfferType[] =
       ],
       'host': {
         'name': 'Oliver Conner',
-        'avatarUrl': `https://picsum.photos/400?random${Math.random()}`,
+        'avatarUrl': '../../img/avatar-max.jpg',
         'isPro': true
       },
       'images': [
-        `https://picsum.photos/400?random${Math.random()}`,
-        `https://picsum.photos/400?random${Math.random()}`,
-        `https://picsum.photos/400?random${Math.random()}`,
-        `https://picsum.photos/400?random${Math.random()}`,
-        `https://picsum.photos/400?random${Math.random()}`,
-        `https://picsum.photos/400?random${Math.random()}`,
-        `https://picsum.photos/400?random${Math.random()}`,
+        '../../img/apartment-01.jpg',
+        '../../img/apartment-01.jpg',
+        '../../img/apartment-01.jpg',
+        '../../img/apartment-01.jpg',
+        '../../img/apartment-01.jpg',
+        '../../img/apartment-01.jpg',
+        '../../img/apartment-01.jpg',
       ],
       'maxAdults': 10
     },
@@ -77,14 +77,14 @@ export const currentOffers: currentOfferType[] =
       ],
       'host': {
         'name': 'Ironer',
-        'avatarUrl': `https://picsum.photos/400?random${Math.random()}`,
+        'avatarUrl': '../../img/avatar-max.jpg',
         'isPro': true
       },
       'images': [
-        `https://picsum.photos/400?random${Math.random()}`,
-        `https://picsum.photos/400?random${Math.random()}`,
-        `https://picsum.photos/400?random${Math.random()}`,
-        `https://picsum.photos/400?random${Math.random()}`,
+        '../../img/apartment-01.jpg',
+        '../../img/apartment-01.jpg',
+        '../../img/apartment-01.jpg',
+        '../../img/apartment-01.jpg',
       ],
       'maxAdults': 3
     },
@@ -116,14 +116,14 @@ export const currentOffers: currentOfferType[] =
       ],
       'host': {
         'name': 'n',
-        'avatarUrl': `https://picsum.photos/400?random${Math.random()}`,
+        'avatarUrl': '../../img/avatar-max.jpg',
         'isPro': false
       },
       'images': [
-        `https://picsum.photos/400?random${Math.random()}`,
-        `https://picsum.photos/400?random${Math.random()}`,
-        `https://picsum.photos/400?random${Math.random()}`,
-        `https://picsum.photos/400?random${Math.random()}`,
+        '../../img/apartment-01.jpg',
+        '../../img/apartment-01.jpg',
+        '../../img/apartment-01.jpg',
+        '../../img/apartment-01.jpg',
 
       ],
       'maxAdults': 14
@@ -156,14 +156,14 @@ export const currentOffers: currentOfferType[] =
       ],
       'host': {
         'name': 'n',
-        'avatarUrl': `https://picsum.photos/400?random${Math.random()}`,
+        'avatarUrl': '../../img/avatar-max.jpg',
         'isPro': false
       },
       'images': [
-        `https://picsum.photos/400?random${Math.random()}`,
-        `https://picsum.photos/400?random${Math.random()}`,
-        `https://picsum.photos/400?random${Math.random()}`,
-        `https://picsum.photos/400?random${Math.random()}`,
+        '../../img/apartment-01.jpg',
+        '../../img/apartment-01.jpg',
+        '../../img/apartment-01.jpg',
+        '../../img/apartment-01.jpg',
 
       ],
       'maxAdults': 4
