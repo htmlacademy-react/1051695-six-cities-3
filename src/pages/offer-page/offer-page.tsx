@@ -162,7 +162,7 @@ function OfferPage({ isSignedIn, offers, currentOffers, comments }: offerPagePro
               </section>
             </div>
           </div>
-          <Map className="offer__map map" offers={offers} city={offers[0]}/>
+          <Map className="offer__map map" offers={offers} />
         </section>
         <div className="container">
           <section className="near-places places">

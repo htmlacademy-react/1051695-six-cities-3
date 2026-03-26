@@ -1,6 +1,6 @@
 
 type apartmentType = 'apartment' | 'room' | 'house' | 'hotel';
-type locationType = {
+export type locationType = {
       'latitude': number;
       'longitude': number;
       'zoom': number;

@@ -5,12 +5,11 @@ import { mainOfferType } from './main-offer-type';
 import CitiesContainer from '../../components/cities-container/cities-container';
 
 type mainPageProps = {
-  rentOffersCount: number;
   isSignedIn: boolean;
   offers: mainOfferType[];
 }
 
-function MainPage({ rentOffersCount, isSignedIn, offers }: mainPageProps): JSX.Element {
+function MainPage({ isSignedIn, offers }: mainPageProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Header isSignedIn={isSignedIn} />
@@ -19,7 +18,7 @@ function MainPage({ rentOffersCount, isSignedIn, offers }: mainPageProps): JSX.E
         <div className="tabs">
           {LocationsList(cities)}
         </div>
-        <CitiesContainer rentOffersCount={rentOffersCount} offers={offers} />
+        <CitiesContainer offers={offers} />
       </main>
     </div>
   );
