@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import leaflet from 'leaflet';
 import { UrlMarker } from '../../consts';
 import 'leaflet/dist/leaflet.css';
-import useMap from '../../hooks/useMap';
+import useMap from '../../hooks/use-map';
 import { mainOfferType } from '../../pages/main-page/main-offer-type';
 import { Nullable } from 'vitest';
 
