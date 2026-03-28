@@ -8,6 +8,8 @@ import { commentsType } from './comments-type';
 import { useParams } from 'react-router-dom';
 import NotFoundPage from '../not-found-page/not-found-page';
 import dayjs from 'dayjs';
+import { NEAR_PLACES_MAX_LENGTH } from '../../consts';
+import { CitiesCardClass } from '../../consts';
 
 type offerPageProps = {
   isSignedIn: boolean;
@@ -22,6 +24,8 @@ function OfferPage({ isSignedIn, offers, currentOffers, comments }: offerPagePro
   if (!currentOffer) {
     return <NotFoundPage />;
   }
+
+  const nearOffers = offers.filter((el) => (el.id !== offerId)).slice(0, NEAR_PLACES_MAX_LENGTH);
   const {
     // id,
     bedrooms,
@@ -170,7 +174,7 @@ function OfferPage({ isSignedIn, offers, currentOffers, comments }: offerPagePro
               Other places in the neighbourhood
             </h2>
             <div className="near-places__list places__list">
-              <OffersList offers={offers} isOfferPage />
+              <OffersList offers={nearOffers} page={CitiesCardClass.NEAR_PLACES} />
             </div>
           </section>
         </div>
