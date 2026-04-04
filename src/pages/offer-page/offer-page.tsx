@@ -9,16 +9,16 @@ import { commentType } from '../../components/review/review';
 import { useParams } from 'react-router-dom';
 import NotFoundPage from '../not-found-page/not-found-page';
 import { NEAR_PLACES_MAX_LENGTH } from '../../consts';
-import { CitiesCardClass } from '../../consts';
+import { CitiesCardClass, AuthorizationStatus } from '../../consts';
 
 type offerPageProps = {
-  isSignedIn: boolean;
+  isSignedIn: string;
   offers: mainOfferType[];
   currentOffers: currentOfferType[];
   comments: commentType[];
 }
 
-function OfferPage({ isSignedIn, offers, currentOffers, comments }: offerPageProps){
+function OfferPage({ isSignedIn, offers, currentOffers, comments }: offerPageProps) {
   const { id: offerId = '' } = useParams();
   const currentOffer = currentOffers.find((el) => (el.id === offerId));
   if (!currentOffer) {
@@ -45,7 +45,7 @@ function OfferPage({ isSignedIn, offers, currentOffers, comments }: offerPagePro
   } = currentOffer;
   return (
     <div className="page">
-      <Header isSignedIn={isSignedIn} favoriteOffersCount={favoriteOffersCount}/>
+      <Header isSignedIn={isSignedIn} favoriteOffersCount={favoriteOffersCount} />
       <main className="page__main page__main--offer">
         <section className="offer">
           <div className="offer__gallery-container container">
@@ -127,8 +127,8 @@ function OfferPage({ isSignedIn, offers, currentOffers, comments }: offerPagePro
                 </div>
               </div>
               <section className="offer__reviews reviews">
-                <Reviews comments={comments}/>
-                {isSignedIn && <Form />}
+                <Reviews comments={comments} />
+                {isSignedIn === AuthorizationStatus.Auth && <Form />}
               </section>
             </div>
           </div>

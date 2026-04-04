@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../consts';
+import { AuthorizationStatus } from '../../consts';
 
 type headerProps = {
-  isSignedIn: boolean;
-  favoriteOffersCount?:number;
+  isSignedIn: string;
+  favoriteOffersCount?: number;
   isLoginPage?: boolean;
 }
 
@@ -23,11 +24,11 @@ function Header({ isSignedIn, isLoginPage = false, favoriteOffersCount }: header
               />
             </Link>
           </div>
-          { isLoginPage ||
+          {isLoginPage ||
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
-                  {isSignedIn &&
+                  {isSignedIn === AuthorizationStatus.Auth &&
                     <Link
                       to={AppRoute.Favorite}
                       className="header__nav-link header__nav-link--profile"
@@ -38,14 +39,14 @@ function Header({ isSignedIn, isLoginPage = false, favoriteOffersCount }: header
                       </span>
                       <span className="header__favorite-count">{favoriteOffersCount}</span>
                     </Link>}
-                  {!isSignedIn &&
+                  {isSignedIn !== AuthorizationStatus.Auth &&
                     < Link className="header__nav-link header__nav-link--profile" to={AppRoute.Login}>
                       <div className="header__avatar-wrapper user__avatar-wrapper">
                       </div>
                       <span className="header__login">Sign in</span>
                     </Link>}
                 </li>
-                {isSignedIn &&
+                {isSignedIn === AuthorizationStatus.Auth &&
                   <li className="header__nav-item">
                     <a className="header__nav-link" href="#">
                       <span className="header__signout">Sign out</span>

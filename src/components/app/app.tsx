@@ -4,10 +4,10 @@ import LoginPage from '../../pages/login-page/login-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import ScrollToTop from '../scroll-to-top/scroll-to-top';
-import { Settings, AppRoute } from '../../consts';
+import { Settings, AppRoute, AuthorizationStatus } from '../../consts';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import PrivateRoute from '../private-route/private-route';
-import { offers } from '../../mocks/offers-mock';
+// import { offers } from '../../mocks/offers-mock';
 import { currentOffers } from '../../mocks/current-offer-mocks';
 import { comments } from '../../mocks/comments-mock';
 import { showOffers } from '../../store/action';
@@ -16,35 +16,35 @@ import { useEffect } from 'react';
 
 
 function App(): JSX.Element {
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(showOffers(offers));
-  }, [dispatch]);
+  // const dispatch = useAppDispatch();
+  // useEffect(() => {
+  //   dispatch(showOffers(offers));
+  // }, [dispatch]);
   const stateOffers = useAppSelector((state) => state.offers);
-
+  const stateAuthorizationStatus = useAppSelector((state)=> state.authorizationStatus);
   return (
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainPage isSignedIn={Settings.isSignedIn} />}
+          element={<MainPage isSignedIn={stateAuthorizationStatus} />}
         />
         <Route
           path={AppRoute.Favorite}
           element={
-            <PrivateRoute authorizationStatus={Settings.isSignedIn}>
-              <FavoritesPage isSignedIn={Settings.isSignedIn} offers={stateOffers} />
+            <PrivateRoute authorizationStatus={stateAuthorizationStatus}>
+              <FavoritesPage isSignedIn={stateAuthorizationStatus} offers={stateOffers} />
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Login}
-          element={<LoginPage isSignedIn={Settings.isSignedIn} />}
+          element={<LoginPage isSignedIn={stateAuthorizationStatus} />}
         />
         <Route
           path={`${AppRoute.Offer}/:id`}
-          element={<OfferPage isSignedIn={Settings.isSignedIn} offers={stateOffers} currentOffers={currentOffers} comments={comments} />}
+          element={<OfferPage isSignedIn={stateAuthorizationStatus} offers={stateOffers} currentOffers={currentOffers} comments={comments} />}
         />
         <Route
           path='*'
