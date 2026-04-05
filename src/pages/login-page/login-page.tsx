@@ -1,7 +1,7 @@
 import Header from '../../components/header/header';
 
 type loginPageProps = {
-  isSignedIn: boolean;
+  isSignedIn: string;
 }
 
 function LoginPage({isSignedIn}:loginPageProps): JSX.Element {

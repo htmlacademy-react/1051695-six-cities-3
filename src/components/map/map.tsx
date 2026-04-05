@@ -19,7 +19,6 @@ function Map({ className, offers, selectedCardId }: MapType): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap({ mapRef, city });
   const { id: offerId = '' } = useParams();
-
   const defaultCustomIcon = leaflet.icon({
     iconUrl: UrlMarker.Default,
     iconSize: [27, 39],
@@ -33,12 +32,12 @@ function Map({ className, offers, selectedCardId }: MapType): JSX.Element {
   });
   const activeIcon = selectedCardId || offerId;
   useEffect(() => {
-
     if (map) {
       map.eachLayer((layer) => {
         if (layer instanceof L.Marker) {
           map.removeLayer(layer);
         }
+        map.setView([city.location.latitude, city.location.longitude], city.location.zoom);
       });
       offers.forEach((offer) => {
         leaflet
@@ -53,7 +52,7 @@ function Map({ className, offers, selectedCardId }: MapType): JSX.Element {
           .addTo(map);
       });
     }
-  }, [map, offers, selectedCardId, currentCustomIcon, defaultCustomIcon, activeIcon]);
+  }, [map, offers, selectedCardId, currentCustomIcon, defaultCustomIcon, activeIcon, city.location.latitude, city.location.longitude, city.location.zoom]);
 
   return (
     <section

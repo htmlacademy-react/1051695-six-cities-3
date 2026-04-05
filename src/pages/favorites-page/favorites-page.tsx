@@ -6,7 +6,7 @@ import CitiesCard from '../../components/cities-card/cities-card';
 import { CitiesCardClass } from '../../consts';
 
 type favoritePageProps = {
-  isSignedIn: boolean;
+  isSignedIn: string;
   offers: mainOfferType[];
 }
 
@@ -27,7 +27,7 @@ function FavoritesPage({ isSignedIn, offers }: favoritePageProps): JSX.Element {
                   <li key={city || null} className="favorites__locations-items">
                     <div className="favorites__locations locations locations--current">
                       <div className="locations__item">
-                        <a className="locations__item-link" href="#">
+                        <a className="locations__item-link" >
                           <span>{city}</span>
                         </a>
                       </div>

@@ -45,7 +45,7 @@ function CitiesContainer({ offers, currentCity }: CitiesContainer): JSX.Element 
           </div>
         </section>
         <div className="cities__right-section">
-          <Map className="cities__map map" offers={offers} selectedCardId={selectedCardId} />
+          <Map className="cities__map map" offers={sortedOffers} selectedCardId={selectedCardId} />
         </div>
       </div>
     </div>);

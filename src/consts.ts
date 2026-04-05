@@ -2,6 +2,12 @@ const Settings = {
   isSignedIn: true,
 };
 
+const AuthorizationStatus = {
+  Auth:'AUTH',
+  NoAuth:'NO_AUTH',
+  Unknown:'UNKNOWN',
+} as const ;
+
 const cities = [
   'Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'
 ];
@@ -48,5 +54,14 @@ const enum SortOption {
   TopRatedFirst
 }
 
+const enum APIRoute {
+  Offers = '/offers',
+  Login = '/login',
+  Logout = '/logout',
+  Favorite = '/favorites'
+}
 
-export { Settings, cities, AppRoute, ratings, NEAR_PLACES_MAX_LENGTH, CitiesCardClass, UrlMarker, SORT_OPTIONS, SortOption };
+const TIMEOUT_ERROR = 2000;
+
+
+export { Settings, cities, AppRoute, ratings, NEAR_PLACES_MAX_LENGTH, CitiesCardClass, UrlMarker, SORT_OPTIONS, SortOption, AuthorizationStatus, APIRoute, TIMEOUT_ERROR };

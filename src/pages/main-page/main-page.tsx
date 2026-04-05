@@ -3,11 +3,12 @@ import LocationsList from '../../components/locations-list/locations-list';
 import CitiesContainer from '../../components/cities-container/cities-container';
 import MainEmpty from '../../components/main-empty/main-empty';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { State } from '../../store';
+import { State } from '../../store/index';
 import { changeCity } from '../../store/action';
+// import { saveToken,getToken,dropToken } from '../../services/token';
 
 type mainPageProps = {
-  isSignedIn: boolean;
+  isSignedIn: string;
 }
 
 function MainPage({ isSignedIn }: mainPageProps): JSX.Element {
