@@ -20,7 +20,7 @@ function App(): JSX.Element {
 
   const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
   const stateOffers = useAppSelector((state) => state.offers);
-  const stateAuthorizationStatus = useAppSelector((state)=> state.authorizationStatus);
+  const stateAuthorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   if (isOffersDataLoading === true) {
     return (
@@ -46,7 +46,11 @@ function App(): JSX.Element {
         />
         <Route
           path={AppRoute.Login}
-          element={<LoginPage isSignedIn={stateAuthorizationStatus} />}
+          element={
+            <PrivateRoute authorizationStatus={stateAuthorizationStatus} isLoginPage>
+              <LoginPage isSignedIn={stateAuthorizationStatus} />
+            </PrivateRoute>
+          }
         />
         <Route
           path={`${AppRoute.Offer}/:id`}

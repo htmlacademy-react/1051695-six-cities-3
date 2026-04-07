@@ -8,7 +8,7 @@ import { checkAuthAction, fetchOfferAction, loginAction, logoutAction } from './
 // store.dispatch(checkAuthAction());
 store.dispatch(fetchOfferAction());
 store.dispatch(checkAuthAction());
-// store.dispatch(logoutAction());
+store.dispatch(logoutAction());
 
 // store.dispatch(logoutAction({email:'123q@nm.ru', password:'1234aa'}));
 // store.dispatch(loginAction({email:'123q@nm.ru', password:'1234aa'}));
