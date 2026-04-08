@@ -8,15 +8,9 @@ type PrivateRouteProps = {
 }
 
 function PrivateRoute({ authorizationStatus, children, isLoginPage = false }: PrivateRouteProps) {
-  let status: string = AuthorizationStatus.Auth;
-  let route = AppRoute.Login;
+  const status = isLoginPage ? AuthorizationStatus.NoAuth : AuthorizationStatus.Auth;
+  const route = isLoginPage ? AppRoute.Main : AppRoute.Login;
 
-  if (isLoginPage) {
-    route = AppRoute.Main;
-  }
-  if (isLoginPage && authorizationStatus === AuthorizationStatus.NoAuth) {
-    status = AuthorizationStatus.NoAuth;
-  }
   return (
     authorizationStatus === status ?
       children :

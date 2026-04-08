@@ -45,7 +45,7 @@ function App(): JSX.Element {
           path={AppRoute.Login}
           element={
             <PrivateRoute authorizationStatus={stateAuthorizationStatus} isLoginPage>
-              <LoginPage isSignedIn={stateAuthorizationStatus} />
+              <LoginPage />
             </PrivateRoute>
           }
         />
