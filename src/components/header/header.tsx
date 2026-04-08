@@ -13,10 +13,11 @@ type headerProps = {
   isLoginPage?: boolean;
 }
 
+
 function Header({ isSignedIn, isLoginPage = false, favoriteOffersCount }: headerProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const userEmail = useAppSelector((state:State)=>state.user.email) || '';
-  const userAvatarUrl = useAppSelector((state:State)=>state.user.avatarUrl) || '';
+  const userEmail = useAppSelector((state: State) => state.user.email) || '';
+  const userAvatarUrl = useAppSelector((state: State) => state.user.avatarUrl) || '';
   return (
     <header className="header">
       <div className="container">
@@ -42,7 +43,7 @@ function Header({ isSignedIn, isLoginPage = false, favoriteOffersCount }: header
                       className="header__nav-link header__nav-link--profile"
                     >
                       <div className="header__avatar-wrapper user__avatar-wrapper">
-                        <img src={userAvatarUrl} style={{borderRadius: '50%'}}/>
+                        <img src={userAvatarUrl} style={{ borderRadius: '50%' }} />
                       </div>
                       <span className="header__user-name user__name">
                         {userEmail.charAt(0).toUpperCase() + userEmail.slice(1)}
@@ -58,8 +59,13 @@ function Header({ isSignedIn, isLoginPage = false, favoriteOffersCount }: header
                 </li>
                 {isSignedIn === AuthorizationStatus.Auth &&
                   <li className="header__nav-item">
-                    <a className="header__nav-link" href="#" >
-                      <span className="header__signout" onClick={()=>void dispatch(logoutAction())} >Sign out</span>
+                    <a className="header__nav-link" >
+                      <span className="header__signout" onClick={(e) => {
+                        e.preventDefault();
+                        void dispatch(logoutAction());
+                      }}
+                      >Sign out
+                      </span>
                     </a>
                   </li>}
               </ul>
