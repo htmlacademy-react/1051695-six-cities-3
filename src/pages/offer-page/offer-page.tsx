@@ -4,32 +4,31 @@ import Map from '../../components/map/map';
 import Form from '../../components/form/form';
 import Reviews from '../../components/reviews/reviews';
 import { mainOfferType } from '../main-page/main-offer-type';
-import { commentType } from '../../components/review/review';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import NotFoundPage from '../not-found-page/not-found-page';
 import { NEAR_PLACES_MAX_LENGTH } from '../../consts';
 import { CitiesCardClass, AuthorizationStatus } from '../../consts';
-import { fetchNearbyOffersAction, fetchCurrentOfferAction } from '../../store/api-actions';
+import { fetchNearbyOffersAction, fetchCurrentOfferAction, fetchComments } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 
 type offerPageProps = {
   isSignedIn: string;
   offers: mainOfferType[];
-  // currentOffer: currentOfferType;
-  comments: commentType[];
 }
 
-function OfferPage({ isSignedIn, offers, comments }: offerPageProps) {
+function OfferPage({ isSignedIn, offers }: offerPageProps) {
   const { id: offerId = '' } = useParams();
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchNearbyOffersAction(offerId));
     dispatch(fetchCurrentOfferAction(offerId));
+    dispatch(fetchComments(offerId));
   }, [offerId, dispatch]);
 
   const nearbyOffers = useAppSelector((state) => state.nearbyOffers).slice(0, NEAR_PLACES_MAX_LENGTH);
   const currentOffer = useAppSelector((state) => state.currentOffer);
+  const comments = useAppSelector((state) => state.comments);
 
   const favoriteOffersCount = offers.filter((offer) => (offer.isFavorite)).length;
   if (!currentOffer) {

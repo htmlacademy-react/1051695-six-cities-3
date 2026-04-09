@@ -1,6 +1,7 @@
 import { createAction } from '@reduxjs/toolkit';
 import { mainOfferType } from '../pages/main-page/main-offer-type';
 import { currentOfferType } from '../pages/offer-page/current-offer-type';
+import { commentType } from '../components/review/review';
 import { userData } from './api-actions';
 
 const changeCity = createAction<string>('changeCity');
@@ -11,7 +12,8 @@ const setError = createAction<string | null>('setError');
 const setOffersDataLoadingStatus = createAction<boolean>('setOffersDataLoadingStatus');
 const setUser = createAction<userData>('setUser');
 const loadNearbyOffers = createAction<mainOfferType[]>('loadNearbyOffers');
-const loadCurrentOffer = createAction<currentOfferType>('currentOffer');
+const loadCurrentOffer = createAction<currentOfferType>('loadCurrentOffer');
+const loadComments = createAction<commentType[]>('loadComments');
 
-export { changeCity, showOffers, loadOffers, requireAuthorization, setError, setOffersDataLoadingStatus, setUser, loadNearbyOffers, loadCurrentOffer };
+export { changeCity, showOffers, loadOffers, requireAuthorization, setError, setOffersDataLoadingStatus, setUser, loadNearbyOffers, loadCurrentOffer,loadComments };
 

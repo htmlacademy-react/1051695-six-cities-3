@@ -8,7 +8,6 @@ import Spinner from '../spinner/spinner';
 import { AppRoute} from '../../consts';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import PrivateRoute from '../private-route/private-route';
-import { comments } from '../../mocks/comments-mock';
 import { useAppSelector } from '../../hooks';
 
 
@@ -50,7 +49,7 @@ function App(): JSX.Element {
         />
         <Route
           path={`${AppRoute.Offer}/:id`}
-          element={<OfferPage isSignedIn={stateAuthorizationStatus} offers={stateOffers} comments={comments} />}
+          element={<OfferPage isSignedIn={stateAuthorizationStatus} offers={stateOffers} />}
         />
         <Route
           path='*'
