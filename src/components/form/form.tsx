@@ -4,10 +4,11 @@ import { FormEvent } from 'react';
 import { postReviewAction } from '../../store/api-actions';
 import { useAppDispatch } from '../../hooks';
 import { useParams } from 'react-router-dom';
-import { setError } from '../../store/offer-slice/offer-slice';
+import { setError } from '../../store/slice';
 import { clearErrorAction } from '../../store/api-actions';
 import { State } from '../../store';
 import { useAppSelector } from '../../hooks';
+import ErrorMessage from '../error-message/error-message';
 type changeHandlerType = ReactEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 
 function Form(): JSX.Element {
@@ -97,7 +98,7 @@ function Form(): JSX.Element {
           }
         > {isSending ? 'Loading' : 'Submit'}
         </button>
-        {error ? error : ''}
+        {error ? <ErrorMessage error={error}/> : ''}
       </div>
     </form>);
 }

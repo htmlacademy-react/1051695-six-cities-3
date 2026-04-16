@@ -4,6 +4,12 @@ import FavoritesEmpty from '../../components/favorites-empty/favorites-empty';
 import { mainOfferType } from '../main-page/main-offer-type';
 import CitiesCard from '../../components/cities-card/cities-card';
 import { CitiesCardClass } from '../../consts';
+import { fetchFavoritesAction } from '../../store/api-actions';
+
+
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useEffect } from 'react';
+import { AuthorizationStatus } from '../../consts';
 
 type favoritePageProps = {
   isSignedIn: string;
@@ -11,12 +17,24 @@ type favoritePageProps = {
 }
 
 function FavoritesPage({ isSignedIn, offers }: favoritePageProps): JSX.Element {
-  const uniqueCities = (Array.from(new Set(offers.map((offer) => offer.isFavorite && offer.city.name)))).filter(Boolean);
+  const dispatch = useAppDispatch();
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+
+  // useEffect(() => {
+  //   if (authorizationStatus === AuthorizationStatus.Auth) {
+  //     dispatch(fetchFavoritesAction());
+  //   }
+  // }, [dispatch, authorizationStatus]);
+  const favorites = useAppSelector((state) => state.favorites);
+
+  // console.log(favorites);
+
+
+  const uniqueCities = Array.from(new Set(favorites.map((offer) => offer.city.name)));
   const emptyMainClass = uniqueCities.length > 0 ? ' page__main--favorites-empty' : '';
-  const favoriteOffersCount = offers.filter((offer) => (offer.isFavorite)).length;
   return (
     <div className="page">
-      <Header isSignedIn={isSignedIn} favoriteOffersCount={favoriteOffersCount} />
+      <Header isSignedIn={isSignedIn} />
       <main className={`page__main page__main--favorites${emptyMainClass}`}>
         <div className="page__favorites-container container">
           {uniqueCities.length > 0 ?
@@ -33,7 +51,7 @@ function FavoritesPage({ isSignedIn, offers }: favoritePageProps): JSX.Element {
                       </div>
                     </div>
                     <div className="favorites__places">
-                      {offers.map((offer) => (offer.city.name === city && offer.isFavorite ?
+                      {favorites.map((offer) => (offer.city.name === city ?
                         <CitiesCard key={offer.id} offer={offer} page={CitiesCardClass.FAVORITES} imgWidth={150} imgHeight={110} infoClass='favorites__card-info' />
                         : null))}
                     </div>

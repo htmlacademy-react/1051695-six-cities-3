@@ -59,7 +59,7 @@ const enum APIRoute {
   Offers = '/offers',
   Login = '/login',
   Logout = '/logout',
-  Favorite = '/favorites',
+  Favorite = '/favorite',
   Comments = '/comments'
 }
 

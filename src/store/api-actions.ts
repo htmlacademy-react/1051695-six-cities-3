@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, State } from '../store/index';
 import { AxiosInstance } from 'axios';
-import { setError } from '../store/offer-slice/offer-slice';
+import { setError } from './slice';
 import { APIRoute, TIMEOUT_ERROR } from '../consts';
 import { mainOfferType } from '../pages/main-page/main-offer-type';
 import { dropToken, saveToken } from '../services/token';
@@ -13,6 +13,11 @@ import { reviewType } from '../pages/offer-page/comments-type';
 type authData = {
   email: string;
   password: string;
+}
+
+type FavoriteStatusData = {
+  id: string;
+  status: number;
 }
 
 export type userData = {
@@ -42,22 +47,8 @@ const checkAuthAction = createAsyncThunk<userData, undefined, { extra: AxiosInst
     return data;
   }
 );
-const loginAction = createAsyncThunk<userData, authData, { extra: AxiosInstance }>(
-  'login',
-  async ({ email, password }, { extra: api }) => {
-    const { data } = await api.post<userData>(APIRoute.Login, { email, password });
-    saveToken(data.token || '');
-    return data;
-  }
-);
 
-const logoutAction = createAsyncThunk<void, undefined, { extra: AxiosInstance }>(
-  'logout',
-  async (_arg, { extra: api }) => {
-    await api.delete(APIRoute.Logout);
-    dropToken();
-  }
-);
+
 
 const clearErrorAction = createAsyncThunk<
   void,
@@ -120,5 +111,49 @@ const postReviewAction = createAsyncThunk<
   }
 );
 
+const fetchFavoritesAction = createAsyncThunk<
+  mainOfferType[],
+  undefined,
+  { extra: AxiosInstance }
+>(
+  'fetchFavorites',
+  async (_arg, { extra: api }) => {
+    const { data } = await api.get<mainOfferType[]>(APIRoute.Favorite);
+    return data;
+  }
+);
 
-export { fetchOffersAction, checkAuthAction, loginAction, logoutAction, clearErrorAction, fetchNearbyOffersAction, fetchCurrentOfferAction, fetchComments, postReviewAction };
+const toggleFavoritesAction = createAsyncThunk<currentOfferType, FavoriteStatusData, { extra: AxiosInstance }>(
+  'toggleFavorites',
+  async ({status, id}, { dispatch, extra: api }) => {
+    const { data } = await api.post<currentOfferType>(`${APIRoute.Favorite}/${id}/${status}`);
+
+    dispatch(fetchFavoritesAction());
+    dispatch(fetchOffersAction());
+    return data;
+  }
+);
+
+
+const loginAction = createAsyncThunk<userData, authData, { extra: AxiosInstance }>(
+  'login',
+  async ({ email, password }, { dispatch, extra: api }) => {
+    const { data } = await api.post<userData>(APIRoute.Login, { email, password });
+    saveToken(data.token || '');
+    dispatch(fetchFavoritesAction());
+    dispatch(fetchOffersAction());
+    return data;
+  }
+);
+
+const logoutAction = createAsyncThunk<void, undefined, { extra: AxiosInstance }>(
+  'logout',
+  async (_arg, {dispatch, extra: api }) => {
+    await api.delete(APIRoute.Logout);
+    dropToken();
+    dispatch(fetchOffersAction());
+  }
+);
+
+
+export { fetchOffersAction, checkAuthAction, loginAction, logoutAction, clearErrorAction, fetchNearbyOffersAction, fetchCurrentOfferAction, fetchComments, postReviewAction, fetchFavoritesAction, toggleFavoritesAction };
