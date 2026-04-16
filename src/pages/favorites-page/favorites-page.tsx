@@ -1,24 +1,22 @@
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import FavoritesEmpty from '../../components/favorites-empty/favorites-empty';
-import { mainOfferType } from '../main-page/main-offer-type';
 import CitiesCard from '../../components/cities-card/cities-card';
 import { CitiesCardClass } from '../../consts';
-import { fetchFavoritesAction } from '../../store/api-actions';
+// import { fetchFavoritesAction } from '../../store/api-actions';
 
 
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { useEffect } from 'react';
-import { AuthorizationStatus } from '../../consts';
+import { useAppSelector } from '../../hooks';
+// import { useEffect } from 'react';
+// import { AuthorizationStatus } from '../../consts';
 
 type favoritePageProps = {
   isSignedIn: string;
-  offers: mainOfferType[];
 }
 
-function FavoritesPage({ isSignedIn, offers }: favoritePageProps): JSX.Element {
-  const dispatch = useAppDispatch();
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+function FavoritesPage({ isSignedIn }: favoritePageProps): JSX.Element {
+  // const dispatch = useAppDispatch();
+  // const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   // useEffect(() => {
   //   if (authorizationStatus === AuthorizationStatus.Auth) {
