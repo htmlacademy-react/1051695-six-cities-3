@@ -18,11 +18,10 @@ function MainPage({ isSignedIn }: mainPageProps): JSX.Element {
   const offers = useAppSelector((state: State) => state.offers);
   const cityOffers = offers?.filter((offer) => (offer.city.name === currentCity));
   const emptyClass = cityOffers.length === 0 ? ' page__main--index-empty' : '';
-  const favoriteOffersCount = offers.filter((offer) => (offer.isFavorite)).length;
   const error = useAppSelector((state: State) => state.error);
   return (
     <div className='page page--gray page--main'>
-      <Header isSignedIn={isSignedIn} favoriteOffersCount={favoriteOffersCount} />
+      <Header isSignedIn={isSignedIn} />
       <main className={`page__main page__main--index${emptyClass}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">

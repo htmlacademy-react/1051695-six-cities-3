@@ -3,39 +3,38 @@ import OffersList from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
 import Form from '../../components/form/form';
 import Reviews from '../../components/reviews/reviews';
-import { mainOfferType } from '../main-page/main-offer-type';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import NotFoundPage from '../not-found-page/not-found-page';
 import { NEAR_PLACES_MAX_LENGTH } from '../../consts';
 import { CitiesCardClass, AuthorizationStatus } from '../../consts';
-import { fetchNearbyOffersAction, fetchCurrentOfferAction, fetchComments } from '../../store/api-actions';
+import { fetchNearbyOffersAction, fetchCurrentOfferAction, fetchComments, toggleFavoritesAction } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import Spinner from '../../components/spinner/spinner';
 
 type offerPageProps = {
   isSignedIn: string;
-  offers: mainOfferType[];
 }
 
-function OfferPage({ isSignedIn, offers }: offerPageProps) {
+function OfferPage({ isSignedIn }: offerPageProps) {
   const { id: offerId = '' } = useParams();
   const dispatch = useAppDispatch();
   const currentOffer = useAppSelector((state) => state.currentOffer);
+
   useEffect(() => {
-    if (offerId && currentOffer?.id !== offerId) {
+    if (offerId) {
       dispatch(fetchCurrentOfferAction(offerId));
       dispatch(fetchNearbyOffersAction(offerId));
       dispatch(fetchComments(offerId));
     }
-  }, [offerId, dispatch, currentOffer?.id]);
+  }, [offerId, dispatch]);
 
   const nearbyOffers = useAppSelector((state) => state.nearbyOffers).slice(0, NEAR_PLACES_MAX_LENGTH);
 
   const comments = useAppSelector((state) => state.comments);
   const isLoading = useAppSelector((state) => state.isLoading);
 
-  const favoriteOffersCount = offers.filter((offer) => (offer.isFavorite)).length;
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -56,9 +55,23 @@ function OfferPage({ isSignedIn, offers }: offerPageProps) {
     title,
     type
   } = currentOffer;
+
+  const handleBookmarkClick = () => {
+    // Если не авторизован — ничего не делаем (или редиректим на Login)
+    if (isSignedIn !== AuthorizationStatus.Auth) {
+      return;
+    }
+
+    // Инвертируем текущий статус: если true (лайкнуто), шлем 0, иначе 1
+
+    dispatch(toggleFavoritesAction({
+      id: offerId,
+      status: isFavorite ? 0 : 1
+    }));
+  };
   return (
     <div className="page">
-      <Header isSignedIn={isSignedIn} favoriteOffersCount={favoriteOffersCount} />
+      <Header isSignedIn={isSignedIn} />
       <main className="page__main page__main--offer">
         <section className="offer">
           <div className="offer__gallery-container container">
@@ -85,7 +98,7 @@ function OfferPage({ isSignedIn, offers }: offerPageProps) {
                 <h1 className="offer__name">
                   {title}
                 </h1>
-                <button className={`offer__bookmark-button button ${isFavorite && 'offer__bookmark-button--active'}`} type="button">
+                <button className={`offer__bookmark-button button ${isFavorite ? 'offer__bookmark-button--active' : ''}`} type="button" onClick={handleBookmarkClick}>
                   <svg className="offer__bookmark-icon" width={31} height={33}>
                     <use xlinkHref="#icon-bookmark" />
                   </svg>

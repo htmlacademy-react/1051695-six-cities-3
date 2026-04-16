@@ -10,13 +10,13 @@ import { memo } from 'react';
 
 type headerProps = {
   isSignedIn: string;
-  favoriteOffersCount?: number;
   isLoginPage?: boolean;
 }
 
-const HeaderComponent = ({ isSignedIn, isLoginPage = false, favoriteOffersCount }: headerProps): JSX.Element => {
+const HeaderComponent = ({ isSignedIn, isLoginPage = false}: headerProps): JSX.Element => {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state: State) => state.user);
+  const favoriteOffersCount = useAppSelector((state) => state.favorites.length);
   const userEmail = user?.email || '';
   const userAvatarUrl = user?.avatarUrl || '';
   return (
