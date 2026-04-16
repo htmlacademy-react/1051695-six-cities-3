@@ -3,7 +3,7 @@ import OffersList from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
 import Form from '../../components/form/form';
 import Reviews from '../../components/reviews/reviews';
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import NotFoundPage from '../not-found-page/not-found-page';
 import { NEAR_PLACES_MAX_LENGTH } from '../../consts';
