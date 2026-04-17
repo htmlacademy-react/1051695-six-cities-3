@@ -26,6 +26,7 @@ function OfferPage({ isSignedIn }: offerPageProps) {
     if (offerId) {
       dispatch(fetchCurrentOfferAction(offerId));
       dispatch(fetchNearbyOffersAction(offerId));
+
       dispatch(fetchComments(offerId));
     }
   }, [offerId, dispatch]);
