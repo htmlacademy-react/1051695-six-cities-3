@@ -13,7 +13,6 @@ import { useAppSelector } from '../../hooks';
 
 function App(): JSX.Element {
   const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
-  const stateOffers = useAppSelector((state) => state.offers);
   const stateAuthorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   if (isOffersDataLoading === true) {
@@ -34,7 +33,7 @@ function App(): JSX.Element {
           path={AppRoute.Favorite}
           element={
             <PrivateRoute authorizationStatus={stateAuthorizationStatus}>
-              <FavoritesPage isSignedIn={stateAuthorizationStatus} offers={stateOffers} />
+              <FavoritesPage isSignedIn={stateAuthorizationStatus} />
             </PrivateRoute>
           }
         />
@@ -48,7 +47,7 @@ function App(): JSX.Element {
         />
         <Route
           path={`${AppRoute.Offer}/:id`}
-          element={<OfferPage isSignedIn={stateAuthorizationStatus} offers={stateOffers} />}
+          element={<OfferPage isSignedIn={stateAuthorizationStatus} />}
         />
         <Route
           path='*'
