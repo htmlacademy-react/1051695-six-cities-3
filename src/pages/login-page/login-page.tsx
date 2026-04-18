@@ -2,13 +2,18 @@ import Header from '../../components/header/header';
 import { loginAction } from '../../store/api-actions';
 import { useAppDispatch } from '../../hooks';
 import { useState, ReactEventHandler } from 'react';
-import { AuthorizationStatus } from '../../consts';
+import { AuthorizationStatus, AppRoute } from '../../consts';
+import { Link } from 'react-router-dom';
+import { cities } from '../../consts';
 
 type changeHandlerType = ReactEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 
 function LoginPage(): JSX.Element {
   const dispatch = useAppDispatch();
   const [loginData, setLoginData] = useState({ email: '', password: '' });
+
+  const randomCity = cities[Math.floor(Math.random() * cities.length)];
+
   const handleEmailChange: changeHandlerType = (evt) => {
     setLoginData({ ...loginData, email: evt.currentTarget.value });
   };
@@ -58,9 +63,9 @@ function LoginPage(): JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
-                <span>Amsterdam</span>
-              </a>
+              <Link className="locations__item-link" to={AppRoute.Main}>
+                <span>{randomCity}</span>
+              </Link>
             </div>
           </section>
         </div>

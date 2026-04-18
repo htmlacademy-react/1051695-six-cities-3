@@ -9,13 +9,14 @@ import { AppRoute } from '../../consts';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import PrivateRoute from '../private-route/private-route';
 import { useAppSelector } from '../../hooks';
+import { AuthorizationStatus } from '../../consts';
 
 
 function App(): JSX.Element {
   const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
-  const stateAuthorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector((state)=>state.authorizationStatus);
 
-  if (isOffersDataLoading === true) {
+  if (isOffersDataLoading || authorizationStatus === AuthorizationStatus.Unknown) {
     return (
       <Spinner />
     );
@@ -27,27 +28,27 @@ function App(): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainPage isSignedIn={stateAuthorizationStatus} />}
+          element={<MainPage isSignedIn={authorizationStatus} />}
         />
         <Route
           path={AppRoute.Favorite}
           element={
-            <PrivateRoute authorizationStatus={stateAuthorizationStatus}>
-              <FavoritesPage isSignedIn={stateAuthorizationStatus} />
+            <PrivateRoute authorizationStatus={authorizationStatus}>
+              <FavoritesPage isSignedIn={authorizationStatus} />
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Login}
           element={
-            <PrivateRoute authorizationStatus={stateAuthorizationStatus} isLoginPage>
+            <PrivateRoute authorizationStatus={authorizationStatus} isLoginPage>
               <LoginPage />
             </PrivateRoute>
           }
         />
         <Route
           path={`${AppRoute.Offer}/:id`}
-          element={<OfferPage isSignedIn={stateAuthorizationStatus} />}
+          element={<OfferPage isSignedIn={authorizationStatus} />}
         />
         <Route
           path='*'
