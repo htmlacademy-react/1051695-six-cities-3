@@ -1,37 +1,19 @@
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import FavoritesEmpty from '../../components/favorites-empty/favorites-empty';
-import { mainOfferType } from '../main-page/main-offer-type';
 import CitiesCard from '../../components/cities-card/cities-card';
 import { CitiesCardClass } from '../../consts';
-import { fetchFavoritesAction } from '../../store/api-actions';
-
-
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { useEffect } from 'react';
-import { AuthorizationStatus } from '../../consts';
+import { useAppSelector } from '../../hooks';
 
 type favoritePageProps = {
   isSignedIn: string;
-  offers: mainOfferType[];
 }
 
-function FavoritesPage({ isSignedIn, offers }: favoritePageProps): JSX.Element {
-  const dispatch = useAppDispatch();
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-
-  // useEffect(() => {
-  //   if (authorizationStatus === AuthorizationStatus.Auth) {
-  //     dispatch(fetchFavoritesAction());
-  //   }
-  // }, [dispatch, authorizationStatus]);
+function FavoritesPage({ isSignedIn }: favoritePageProps): JSX.Element {
   const favorites = useAppSelector((state) => state.favorites);
-
-  // console.log(favorites);
-
-
   const uniqueCities = Array.from(new Set(favorites.map((offer) => offer.city.name)));
   const emptyMainClass = uniqueCities.length > 0 ? ' page__main--favorites-empty' : '';
+
   return (
     <div className="page">
       <Header isSignedIn={isSignedIn} />

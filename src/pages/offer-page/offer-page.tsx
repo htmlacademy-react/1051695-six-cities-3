@@ -3,10 +3,10 @@ import OffersList from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
 import Form from '../../components/form/form';
 import Reviews from '../../components/reviews/reviews';
-import { Navigate, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useEffect, useMemo } from 'react';
 import NotFoundPage from '../not-found-page/not-found-page';
-import { NEAR_PLACES_MAX_LENGTH } from '../../consts';
+import { NEAR_PLACES_MAX_LENGTH, AppRoute } from '../../consts';
 import { CitiesCardClass, AuthorizationStatus } from '../../consts';
 import { fetchNearbyOffersAction, fetchCurrentOfferAction, fetchComments, toggleFavoritesAction } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -19,12 +19,14 @@ type offerPageProps = {
 function OfferPage({ isSignedIn }: offerPageProps) {
   const { id: offerId = '' } = useParams();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const currentOffer = useAppSelector((state) => state.currentOffer);
 
   useEffect(() => {
     if (offerId) {
       dispatch(fetchCurrentOfferAction(offerId));
       dispatch(fetchNearbyOffersAction(offerId));
+
       dispatch(fetchComments(offerId));
     }
   }, [offerId, dispatch]);
@@ -33,7 +35,12 @@ function OfferPage({ isSignedIn }: offerPageProps) {
 
   const comments = useAppSelector((state) => state.comments);
   const isLoading = useAppSelector((state) => state.isLoading);
-
+  const mapOffers = useMemo(() => {
+    if (!currentOffer) {
+      return nearbyOffers;
+    }
+    return [...nearbyOffers, currentOffer];
+  }, [nearbyOffers, currentOffer]);
 
   if (isLoading) {
     return <Spinner />;
@@ -57,18 +64,16 @@ function OfferPage({ isSignedIn }: offerPageProps) {
   } = currentOffer;
 
   const handleBookmarkClick = () => {
-    // Если не авторизован — ничего не делаем (или редиректим на Login)
     if (isSignedIn !== AuthorizationStatus.Auth) {
+      navigate(AppRoute.Login);
       return;
     }
-
-    // Инвертируем текущий статус: если true (лайкнуто), шлем 0, иначе 1
-
     dispatch(toggleFavoritesAction({
       id: offerId,
       status: isFavorite ? 0 : 1
     }));
   };
+
   return (
     <div className="page">
       <Header isSignedIn={isSignedIn} />
@@ -78,7 +83,7 @@ function OfferPage({ isSignedIn }: offerPageProps) {
             <div className="offer__gallery">
               {images.map((img, i) => (
                 i < 6 &&
-                <div key={img + Math.random()} className="offer__image-wrapper">
+                <div key={img} className="offer__image-wrapper">
                   <img
                     className="offer__image"
                     src={img}
@@ -158,7 +163,7 @@ function OfferPage({ isSignedIn }: offerPageProps) {
               </section>
             </div>
           </div>
-          <Map className="offer__map map" offers={[...nearbyOffers, currentOffer]} />
+          <Map className="offer__map map" offers={mapOffers} />
         </section>
         <div className="container">
           <section className="near-places places">

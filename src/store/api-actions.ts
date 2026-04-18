@@ -48,8 +48,6 @@ const checkAuthAction = createAsyncThunk<userData, undefined, { extra: AxiosInst
   }
 );
 
-
-
 const clearErrorAction = createAsyncThunk<
   void,
   undefined,
@@ -127,9 +125,7 @@ const toggleFavoritesAction = createAsyncThunk<currentOfferType, FavoriteStatusD
   'toggleFavorites',
   async ({status, id}, { dispatch, extra: api }) => {
     const { data } = await api.post<currentOfferType>(`${APIRoute.Favorite}/${id}/${status}`);
-
     dispatch(fetchFavoritesAction());
-    dispatch(fetchOffersAction());
     return data;
   }
 );

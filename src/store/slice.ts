@@ -15,6 +15,7 @@ type InitialStateType = {
   isSending: boolean;
   isLoading: boolean;
   isOffersDataLoading: boolean;
+  isFavoritesDataLoading: boolean;
   nearbyOffers: mainOfferType[];
   currentOffer: Nullable<currentOfferType>;
   comments: commentsType;
@@ -30,6 +31,7 @@ const initialState: InitialStateType = {
   isLoading: false,
   isSending: false,
   isOffersDataLoading: false,
+  isFavoritesDataLoading: false,
   nearbyOffers: [],
   currentOffer: null,
   comments: [],
@@ -72,6 +74,19 @@ export const Slice = createSlice({
         state.offers = action.payload;
         state.isOffersDataLoading = false;
       })
+      .addCase(fetchOffersAction.rejected, (state) => {
+        state.isOffersDataLoading = false;
+      })
+      .addCase(fetchFavoritesAction.pending, (state) => {
+        state.isFavoritesDataLoading = true;
+      })
+      .addCase(fetchFavoritesAction.rejected, (state) => {
+        state.isFavoritesDataLoading = false;
+      })
+      .addCase(fetchFavoritesAction.fulfilled, (state, action) => {
+        state.isFavoritesDataLoading = false;
+        state.favorites = action.payload;
+      })
 
       .addCase(postReviewAction.pending, (state) => {
         state.isSending = true;
@@ -97,18 +112,22 @@ export const Slice = createSlice({
       .addCase(logoutAction.fulfilled, (state) => {
         state.user = {};
         state.authorizationStatus = AuthorizationStatus.NoAuth;
+        state.favorites = [];
       })
-      .addCase(fetchOffersAction.rejected, (state) => {
-        state.isOffersDataLoading = false;
-      })
-      .addCase(fetchFavoritesAction.fulfilled, (state, action) => {
-        state.favorites = action.payload;
-      })
+
 
       .addCase(toggleFavoritesAction.fulfilled, (state, action) => {
         const updatedOffer = action.payload;
         if (state.currentOffer && state.currentOffer.id === updatedOffer.id) {
           state.currentOffer.isFavorite = updatedOffer.isFavorite;
+        }
+        const offerIndex = state.offers.findIndex((offer) => offer.id === updatedOffer.id);
+        if (offerIndex !== -1) {
+          state.offers[offerIndex].isFavorite = updatedOffer.isFavorite;
+        }
+        const nearbyIndex = state.nearbyOffers.findIndex((offer) => offer.id === updatedOffer.id);
+        if (nearbyIndex !== -1) {
+          state.nearbyOffers[nearbyIndex].isFavorite = updatedOffer.isFavorite;
         }
 
       });
